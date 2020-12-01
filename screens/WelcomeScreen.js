@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity,TextInput, Alert, Modal,ScrollView,KeyboardAvoidingView } from 'react-native';
-import BarterAnimation from '../components/BarterAnimationScreen.js';
+// import BarterAnimation from '../components/BarterAnimationScreen.js';
 
 import db from '../config';
 import firebase from 'firebase';
@@ -178,7 +178,6 @@ export default class WelcomeScreen extends Component {
           }
         </View>
         <View style={styles.profileContainer}>
-          <BarterAnimation/>
           <Text style={styles.title}>Barter</Text>
           <Text style={{color:'#ff8a65'}}> A Trading Method </Text>
         </View>
