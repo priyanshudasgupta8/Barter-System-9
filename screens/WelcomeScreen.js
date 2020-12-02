@@ -28,13 +28,13 @@ export default class WelcomeScreen extends Component {
     .catch((error)=> {
       var errorCode = error.code;
       var errorMessage = error.message;
-      return Alert.alert(errorMessage)
+      return window.alert(errorMessage)
     })
   }
 
   userSignUp = (username, password,confirmPassword) =>{
     if(password !== confirmPassword){
-        return Alert.alert("password doesn't match\nCheck your password.")
+        return window.alert("password doesn't match\nCheck your password.")
     }else{
       firebase.auth().createUserWithEmailAndPassword(username, password)
       .then((response)=>{
@@ -45,7 +45,7 @@ export default class WelcomeScreen extends Component {
           username:this.state.username,
           address:this.state.address
         })
-        return  Alert.alert(
+        return window.alert(
              'User Added Successfully',
              '',
              [
@@ -57,7 +57,7 @@ export default class WelcomeScreen extends Component {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        return Alert.alert(errorMessage)
+        return window.alert(errorMessage)
       });
     }
 
@@ -118,7 +118,7 @@ export default class WelcomeScreen extends Component {
           />
           <TextInput
             style={styles.formTextInput}
-            placeholder ={"Username"}
+            placeholder ={"Email"}
             keyboardType ={'email-address'}
             onChangeText={(text)=>{
               this.setState({
@@ -136,7 +136,7 @@ export default class WelcomeScreen extends Component {
             }}
           /><TextInput
             style={styles.formTextInput}
-            placeholder ={"Confrim Password"}
+            placeholder ={"Confirm Password"}
             secureTextEntry = {true}
             onChangeText={(text)=>{
               this.setState({
@@ -178,12 +178,11 @@ export default class WelcomeScreen extends Component {
           }
         </View>
         <View style={styles.profileContainer}>
-          <BarterAnimation/>
           <Text style={styles.title}>Barter</Text>
           <Text style={{color:'#ff8a65'}}> A Trading Method </Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Text style={{color:'#ff5722', fontSize:18, fontWeight:'bold',marginLeft:55}}>USERNAME</Text>
+          <Text style={{color:'#ff5722', fontSize:18, fontWeight:'bold',marginLeft:705}}>USERNAME</Text>
           <View style={{alignItems:'center'}}>
             <TextInput
             style={styles.loginBox}
@@ -195,7 +194,7 @@ export default class WelcomeScreen extends Component {
             }}
             />
           </View>
-          <Text style={{color:'#ff5722', fontSize:18, fontWeight:'bold',marginLeft:55}}>PASSWORD</Text>
+          <Text style={{color:'#ff5722', fontSize:18, fontWeight:'bold',marginLeft:705}}>PASSWORD</Text>
           <View style={{alignItems:'center'}}>
             <TextInput
               style={styles.loginBox}
