@@ -28,7 +28,7 @@ export default class HomeScreen extends Component{
   keyExtractor = (item, index) => index.toString()
 
   renderItem = ( {item, i} ) =>{
-    console.log(item.item_name);
+    console.log(item.username)
     return (
       <ListItem
         key={i}
@@ -36,8 +36,11 @@ export default class HomeScreen extends Component{
         subtitle={item.description}
         titleStyle={{ color: 'black', fontWeight: 'bold' }}
         rightElement={
-            <TouchableOpacity style={styles.button}>
-              <Text style={{color:'#ffff'}}>Exchange</Text>
+            <TouchableOpacity style={styles.button}
+            onPress ={()=>{
+               this.props.navigation.navigate("ReceiverDetails",{"details": item})
+             ;console.log("this are items ",item.username)}}>
+              <Text style={{color:'#ffff'}}>View</Text>
             </TouchableOpacity>
           }
         bottomDivider
@@ -56,7 +59,7 @@ export default class HomeScreen extends Component{
   render(){
     return(
       <View style={{flex:1}}>
-        <MyHeader title="Barter App"/>
+        <MyHeader title="Barter App" navigation ={this.props.navigation}/>
         <View style={{flex:1}}>
           {
             this.state.allRequests.length === 0

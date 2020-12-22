@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput,KeyboardAvoidingView,TouchableOpacity, Alert } from 'react-native';
+import { View, StyleSheet, Text, TextInput,KeyboardAvoidingView,TouchableOpacity,Alert, ToastAndroid } from 'react-native';
 import firebase from 'firebase';
 import db from '../config';
 import MyHeader from '../components/MyHeader'
@@ -15,12 +15,18 @@ export default class Exchange extends Component{
     }
   }
 
+  createUniqueId(){
+    return Math.random().toString(36).substring(7);
+  }
+
   addItem=(itemName, description)=>{
     var userName = this.state.userName
+    var exchangeId = this.createUniqueId()
     db.collection("exchange_requests").add({
       "username"    : userName,
       "item_name"   : itemName,
-      "description" : description
+      "description" : description,
+      "exchangeId"  : exchangeId
      })
      this.setState({
        itemName : '',
@@ -32,11 +38,19 @@ export default class Exchange extends Component{
        description :''
      })
 
+     // NOTE: Comment below return statement when you test the app in ios
+     // ToastAndroid.showWithGravityAndOffset('Item ready to exchange',
+     //    ToastAndroid.SHORT,
+     //  );
+     // return this.props.navigation.navigate('HomeScreen')
+
+     // NOTE:  Comment the below return statement when you test the app in android
      return Alert.alert(
           'Item ready to exchange',
           '',
           [
             {text: 'OK', onPress: () => {
+
               this.props.navigation.navigate('HomeScreen')
             }}
           ]
@@ -48,7 +62,7 @@ export default class Exchange extends Component{
   render(){
     return(
       <View style={{flex:1}}>
-      <MyHeader title="Add Item"/>
+      <MyHeader title="Add Item" navigation ={this.props.navigation}/>
       <KeyboardAvoidingView style={{flex:1,justifyContent:'center', alignItems:'center'}}>
         <TextInput
           style={styles.formTextInput}
