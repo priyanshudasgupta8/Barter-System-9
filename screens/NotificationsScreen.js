@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, FlatList,Text } from 'react-native';
+import { StyleSheet, View, FlatList,Text,Image } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import MyHeader from '../components/MyHeader';
@@ -50,8 +50,7 @@ export default class NotificationScreen extends Component{
       return (
         <ListItem
           key={index}
-          leftElement={<Icon name="book" type="font-awesome" color ='#696969'/>}
-          title={item.book_name}
+          title={item.item_name}
           titleStyle={{ color: 'black', fontWeight: 'bold' }}
           subtitle={item.message}
           bottomDivider
@@ -71,6 +70,7 @@ export default class NotificationScreen extends Component{
             this.state.allNotifications.length === 0
             ?(
               <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                <Image source={require('../assets/Notification.png')}/>
                 <Text style={{fontSize:25}}>You have no notifications</Text>
               </View>
             )

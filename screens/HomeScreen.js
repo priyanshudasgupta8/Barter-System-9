@@ -28,18 +28,19 @@ export default class HomeScreen extends Component{
   keyExtractor = (item, index) => index.toString()
 
   renderItem = ( {item, i} ) =>{
-    console.log(item.username)
+
     return (
       <ListItem
         key={i}
         title={item.item_name}
         subtitle={item.description}
+        description ={item.item_value}
         titleStyle={{ color: 'black', fontWeight: 'bold' }}
         rightElement={
             <TouchableOpacity style={styles.button}
             onPress ={()=>{
                this.props.navigation.navigate("ReceiverDetails",{"details": item})
-             ;console.log("this are items ",item.username)}}>
+             }}>
               <Text style={{color:'#ffff'}}>View</Text>
             </TouchableOpacity>
           }
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     height:30,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor:"#ff5722",
+    backgroundColor:"#32867d",
     shadowColor: "#000",
     shadowOffset: {
        width: 0,
